@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link href="styles/downLoad.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="scripts/jquery.js"></script>
+    <title>设计平台</title>
+
+</head>
+<body style=" width: 100%;background-color: #fff;height:auto;background:url('downLoad/bg.png') no-repeat;background-size: 100%;">
+<div class="preloader" id="downtip">
+ <span id="text" class="texts">点击右上角的按钮，选择在浏览器中打开</span>
+ <img class="gotoClient" src="downLoad/open.png"/>
+</div>
+<div style="position: absolute;bottom:70px;left:50%; margin-left:-125px;width:250px;">
+    <div  class="btn" id="addios"><a  style="text-decoration: none" href="http://www.pgyer.com/pF5X">
+        <img class="btnimage" src="downLoad/iphone-2.png">
+        <span class="btntext">Iphone下载</span>
+    </a></div>
+
+    <div  class="btn1" id="add"><a  style="text-decoration: none" href="http://www.yunyigc.com/CDTPWebGateway/softwareVersion/downloadQr">
+        <img class="btnimage" src="downLoad/android.png">
+        <span class="btntext">Android下载</span>
+    </a></div>
+    <div class="banben"><span>版本：</span><span id="version"></span><span>/</span><span id="time"></span></div>
+</div>
+
+</body>
+<script>
+
+
+    $(document).ready(function(){
+        var ua = window.navigator.userAgent.toLowerCase();
+        if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+            $("#downtip").show();
+
+        }else{
+
+        }
+
+        $.post("http://www.yunyigc.com/CDTPWebGateway/softwareVersion/getByCondition", {
+            code:'APP-Android',name:'安卓APP安装包'
+            },
+            function (e) {
+               if(e.status==1){
+                   var version=e.data.version;
+                   var size=parseInt(e.data.filesize/1024/1024);
+                   var allitme=e.data.activeTime;
+                   var arr=allitme.split(" ");
+                   var time=arr[0];
+                   url=e.data.downloadUrl;
+                   $("#version").text(version);
+                   $("#size").text(size);
+                   $("#time").text(time);
+               }
+            });
+
+    });
+
+</script>
+</html>
