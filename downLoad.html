@@ -9,12 +9,20 @@
     <title>设计平台</title>
 
 </head>
-<body style=" width: 100%;background-color: #fff;height:auto;background:url('downLoad/bg.png') no-repeat;background-size: 100%;">
-<div class="preloader" id="downtip">
+<body>
+<div  style=" background: url(downLoad/bg.png) no-repeat;
+    background-size: contain;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;"
+</div>
+<div class="preloader" id="downtip" style="left:20%">
  <span id="text" class="texts">点击右上角的按钮，选择在浏览器中打开</span>
  <img class="gotoClient" src="downLoad/open.png"/>
 </div>
-<div style="position: fixed;bottom:20px;left:50%; margin-left:-125px;width:250px;">
+<div style="position: relative;margin-top:120%;left:50%; margin-left:-125px;width:250px;">
     <div  class="btn" id="addios"><a  style="text-decoration: none" href="http://www.pgyer.com/pF5X">
         <img class="btnimage" src="downLoad/iphone-2.png">
         <span class="btntext">Iphone下载</span>
